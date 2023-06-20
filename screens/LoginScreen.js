@@ -35,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
       console.log('Login !!!')
       const user = userCredential.user;
       console.log('user: ' + JSON.stringify(user))
-      navigation.navigate('Home')
+      navigation.navigate('BottomNavigation')
     }).catch(error => {
       console.error(error)
       Alert.alert(error.message)

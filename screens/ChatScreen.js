@@ -6,7 +6,7 @@ import {
 
 const ChatScreen = () => {
     return (
-        <View style ={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style ={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#F5EFE7'}}>
             <Text>ChatScreen</Text>
         </View>
     );

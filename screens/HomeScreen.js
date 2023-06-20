@@ -6,7 +6,7 @@ import {
 
 const HomeScreen = () => {
     return (
-        <View style ={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style ={{flex:1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#A0C49D'}}>
             <Text>HomeScreen</Text>
         </View>
     );

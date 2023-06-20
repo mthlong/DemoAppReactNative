@@ -1,16 +1,10 @@
 import React from 'react';
+import Tabs from './tabs';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LoginScreen from '../screens/LoginScreen';
-
-const Stack = createNativeStackNavigator();
-
-const AuthStack = () => {
+const BottomNavigation = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginScreen} />
-    </Stack.Navigator>
+      <Tabs />
     );
 };
 
-export default AuthStack;
+export default BottomNavigation;
