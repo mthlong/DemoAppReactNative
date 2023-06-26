@@ -19,7 +19,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '../firebase-config.js';
 import UserPermission from '../utilities/UserPermission';
-import * as ImagePicker from 'expo-image-picker';
+// import * as ImagePicker from 'expo-image-picker';
 
 export const IMAGENAME = require('../assets/images/png/logo.png');
 export const GOOGLELOGO = require('../assets/images/png/logo_google.png')
@@ -42,17 +42,17 @@ const RegisterScreen = ({ navigation: { goBack } }) => {
   handlePickAvatar = async () => {
     UserPermission.getCameraPermision()
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4,3]
-    });
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    //   allowsEditing: true,
+    //   aspect: [4,3]
+    // });
 
-    console.log(result);
+    // console.log(result);
 
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
+    // if (!result.canceled) {
+    //   setImage(result.assets[0].uri);
+    // }
   }
 
   const handleCreateAccount = () => {
@@ -123,7 +123,7 @@ const RegisterScreen = ({ navigation: { goBack } }) => {
         <Text style={{ textAlign: 'center', color: '#666', marginBottom: 30, fontWeight: '600' }}>Or, register with email</Text>
 
         <TouchableOpacity style = {styles.avatarPlacehorder}>
-          {image && <Image source={{uri: image}} style = {styles.avatar} />}
+          {image ?? <Image source={{uri: image}} style = {styles.avatar} />}
           <Icon name="add" size={40} color='#ffffff' style={{ marginTop: 6, marginLeft: 2 }} />
         </TouchableOpacity>
 
