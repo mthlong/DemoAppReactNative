@@ -31,11 +31,12 @@ const Tabs = () => {
                 elevation: 0,
                 backgroundColor: '#ffffff',
                 borderRadius: 15,
-                height: 90,
+                height: 70,
                 ...styles.shadow
             }
         })}>
             <Tab.Screen name="Home" component={HomeScreen} options={{
+                unmountOnBlur: true,
                 headerShown: false, tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
                         <Icon name='home' size={25} color={focused ? '#AD40AF' : '#748c94'} />
@@ -44,6 +45,7 @@ const Tabs = () => {
                 ),
             }} />
             <Tab.Screen name="Find" component={FindScreen} options={{
+                unmountOnBlur: true,
                 headerShown: false, tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
                         <Icon name='search' size={25} color={focused ? '#AD40AF' : '#748c94'} />
