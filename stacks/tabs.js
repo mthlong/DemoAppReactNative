@@ -48,8 +48,8 @@ const Tabs = () => {
                 unmountOnBlur: true,
                 headerShown: false, tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-                        <Icon name='search' size={25} color={focused ? '#AD40AF' : '#748c94'} />
-                        <Text style={{ color: focused ? '#AD40AF' : '#748c94', fontSize: 12 }}>FIND</Text>
+                        <Icon name='add' size={25} color={focused ? '#AD40AF' : '#748c94'} />
+                        <Text style={{ color: focused ? '#AD40AF' : '#748c94', fontSize: 12 }}>ADD</Text>
                     </View>
                 ),
             }} />

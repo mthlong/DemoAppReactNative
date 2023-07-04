@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  Alert
 } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import Icon from 'react-native-vector-icons/MaterialIcons';

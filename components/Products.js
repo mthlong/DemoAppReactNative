@@ -5,9 +5,10 @@ import {
     StyleSheet,
     Alert
 } from 'react-native';
-import { getFirestore, collection, addDoc, deleteDoc } from 'firebase/firestore';
+import { getFirestore, doc, deleteDoc, updateDoc} from 'firebase/firestore';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-//const database = getFirestore();
+import CustomButton from '../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Product({
     id,
@@ -16,21 +17,71 @@ export default function Product({
     price,
     isSold
 }) {
+    const navigation = useNavigation();
+    const database = getFirestore();
+
+    const handleBuyProduct = () => {
+        const docRef = doc(database, 'products', id);
+        updateDoc(docRef, {
+            isSold: true,
+        })
+    }
+    const handleDeleteProduct = () => {
+        const docRef = doc(database, 'products', id);
+        deleteDoc(docRef);
+    }
+    const handleOnEdit = () => {
+        navigation.navigate('Edit', {
+            paramKey: {id: id, emoji: emoji,name: name,price: price}
+        })
+    }
     return (
-        <View style= {styles.productContainer}>
-            <Text style= {styles.emoji}>{emoji}</Text>
-            <Text style= {styles.name}>{name}</Text>
-            <Text style= {styles.price}>{price}</Text>
+        <View style={styles.productContainer}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Text style={styles.emoji}>{emoji}</Text>
+                <Icon onPress={handleDeleteProduct} name='delete-outline' size={24}></Icon>
+            </View>
+            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.price}>{price} $</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems:'flex-end' }}>
+                <Icon onPress={handleOnEdit} name='edit' size={35}></Icon>
+                <View style={{ width: 160, paddingTop: 20, paddingLeft: 10, alignSelf: 'flex-end'}}>
+                    {isSold ? 
+                    (<SoldOutButton/>) : 
+                    (<CustomButton buttonLabel={'Purchase'} onPress={handleBuyProduct} />)}
+                </View>
+            </View>
+            
         </View>
     )
 }
 
+export function SoldOutButton() {
+    return (<View
+        style={{
+            backgroundColor: 'gray',
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 30,
+        }}>
+        <Text
+            style={{
+                color: '#fff',
+                fontWeight: '700',
+                fontSize: 16,
+                textAlign: 'center',
+            }}>
+            Sold out !!!
+        </Text>
+    </View>)
+}
+
 const styles = StyleSheet.create({
     productContainer: {
-        padding:16,
+        padding: 16,
         backgroundColor: '#fff',
         margin: 16,
-        borderRadius: 8,
+        borderRadius: 14,
         shadowColor: '#7F5DF0',
         shadowOffset: {
             width: 0,
@@ -39,26 +90,19 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.5,
         elevation: 5
-    }, 
+    },
     emoji: {
-        fontSize: 100,
-    }, 
+        fontSize: 70,
+    },
     name: {
         fontSize: 32,
         fontWeight: 'bold'
     },
     price: {
+        paddingLeft: 10,
         fontSize: 24,
-        fontWeight:'bold',
         color: 'gray'
     },
-    button: {
-        backgroundColor: '#0FA5E9',
-        padding: 10,
-        marginVertical: 6,
-        borderRadius: 8,
-        alignItems: 'center'
-    }, 
     buttonText: {
         fontSize: 24,
         fontWeight: 'bold',
